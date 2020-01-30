@@ -94,30 +94,7 @@ stages:
           artifactName: dropDacpac
         condition: succeededOrFailed()
   
-- stage: 'Provision'
-  displayName: 'Provision the database and web application'
-  jobs: 
-  - job: 'DeployInfrastructure'
-    displayName: 'Deploy infrastructure job'
-    pool:
-      vmImage: 'ubuntu-16.04'
-    variables:
-    - group: 'Release'
-    steps:
-    - task: AzureResourceManagerTemplateDeployment@3
-      inputs:
-          deploymentScope: 'Resource Group'
-          ConnectedServiceName: 'Resource Manager - Tailspin - Space Game'
-          subscriptionName: '$(subscription)'
-          action: 'Create Or Update Resource Group'
-          resourceGroupName: 'tailspinRG'
-          location: '$(location)'
-          templateLocation: 'Linked artifact'
-          csmFile: 'template.json'
-          csmParametersFile: 'deploymentParameters.json'
-          deploymentMode: 'Incremental'
-          deploymentOutputs: ResourceGroupDeploymentOutputs
-  
+
 - stage: DBAVerificationScript
   displayName: 'Script database schema changes'
   dependsOn: Provision
