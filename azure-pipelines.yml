@@ -116,7 +116,7 @@ stages:
           csmFile: 'template.json'
           csmParametersFile: 'deploymentParameters.json'
           deploymentMode: 'Incremental'
-          deploymentOutputs: ResourceGroupDeploymentOutputs 
+          deploymentOutputs: ResourceGroupDeploymentOutputs
   
 - stage: DBAVerificationScript
   displayName: 'Script database schema changes'
